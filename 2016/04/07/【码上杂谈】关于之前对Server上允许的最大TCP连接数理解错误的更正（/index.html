@@ -15,28 +15,25 @@ var _hmt = _hmt || [];
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>【码上杂谈】关于之前对Server上允许的最大TCP连接数理解错误的更正 | Miomin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
+  <meta name="description" content="前几天去国内某二线互联网企业参加实习生面试，与面试官讨论Server上允许的最大TCP连接数是多少。我回答，由于资源限制或其他客观因素，一般保持3000-4000的连接就死掉了。面试官问我，如果不考虑这些因素，理论上的最大连接数应该是多少？
 
 
-前几天去国内某二线互联网企业参加实习生面试，与面试官讨论Server上允许的最大TCP连接数是多少。我回答，由于资源限制或其他客观因素，一般保持3000-4000的连">
+我回答如下：操作系统上端口号1024以下是系统保留的，从1024-65535是用户使用的。由于每个来自客户端Socket的TCP连接都要占一个端口号，所">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【码上杂谈】关于之前对Server上允许的最大TCP连接数理解错误的更正">
 <meta property="og:url" content="http://yoursite.com/2016/04/07/【码上杂谈】关于之前对Server上允许的最大TCP连接数理解错误的更正（/index.html">
 <meta property="og:site_name" content="Miomin">
-<meta property="og:description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
+<meta property="og:description" content="前几天去国内某二线互联网企业参加实习生面试，与面试官讨论Server上允许的最大TCP连接数是多少。我回答，由于资源限制或其他客观因素，一般保持3000-4000的连接就死掉了。面试官问我，如果不考虑这些因素，理论上的最大连接数应该是多少？
 
 
-前几天去国内某二线互联网企业参加实习生面试，与面试官讨论Server上允许的最大TCP连接数是多少。我回答，由于资源限制或其他客观因素，一般保持3000-4000的连">
-<meta property="og:updated_time" content="2016-04-19T13:36:58.000Z">
+我回答如下：操作系统上端口号1024以下是系统保留的，从1024-65535是用户使用的。由于每个来自客户端Socket的TCP连接都要占一个端口号，所">
+<meta property="og:updated_time" content="2016-04-19T15:09:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【码上杂谈】关于之前对Server上允许的最大TCP连接数理解错误的更正">
-<meta name="twitter:description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
+<meta name="twitter:description" content="前几天去国内某二线互联网企业参加实习生面试，与面试官讨论Server上允许的最大TCP连接数是多少。我回答，由于资源限制或其他客观因素，一般保持3000-4000的连接就死掉了。面试官问我，如果不考虑这些因素，理论上的最大连接数应该是多少？
 
 
-前几天去国内某二线互联网企业参加实习生面试，与面试官讨论Server上允许的最大TCP连接数是多少。我回答，由于资源限制或其他客观因素，一般保持3000-4000的连">
+我回答如下：操作系统上端口号1024以下是系统保留的，从1024-65535是用户使用的。由于每个来自客户端Socket的TCP连接都要占一个端口号，所">
   
     <link rel="alternative" href="/atom.xml" title="Miomin" type="application/atom+xml">
   
@@ -94,7 +91,7 @@ var _hmt = _hmt || [];
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -232,10 +229,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty" target="_blank" rel="external">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<ul>
+        <ul>
 <li>前几天去国内某二线互联网企业参加实习生面试，与面试官讨论Server上允许的最大TCP连接数是多少。我回答，由于资源限制或其他客观因素，一般保持3000-4000的连接就死掉了。面试官问我，如果不考虑这些因素，理论上的最大连接数应该是多少？</li>
 </ul>
 <ul>
@@ -255,6 +249,8 @@ var _hmt = _hmt || [];
 </ul>
 </li>
 </ul>
+<p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty" target="_blank" rel="external">https://github.com/miomin/AndroidDifficulty</a></p>
+<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
 
       
     </div>
@@ -335,10 +331,10 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 莫绪旻
+    		&copy; 2015-2016 莫绪旻
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		Total Visited <a href="#">12698</a> Times
       	</div>
     </div>
   </div>

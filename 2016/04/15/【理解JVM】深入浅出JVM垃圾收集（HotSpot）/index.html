@@ -15,31 +15,34 @@ var _hmt = _hmt || [];
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>【理解JVM】深入浅出JVM垃圾收集（HotSpot） | Miomin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
+  <meta name="description" content="引言：我的上一篇博文提到JVM运行时的内存分块和GC的基本思想及算法，在GC的道路上越走越远，接下来要做的就是 深入浅出JVM的垃圾收集机制。
 
-引言：我的上一篇博文提到JVM运行时的内存分块和GC的基本思想及算法，在GC的道路上越走越远，接下来要做的就是 深入浅出JVM的垃圾收集机制。
+一、分代垃圾回收1、新生代：大部分刚被创建的对象被分配到这里，生命周期短，被创建后很快变成不可达。在新生代区域内发生的GC称为minor GC。
+新生代被划分为三个区域：
 
-一、分代垃圾回收1、新">
+1个Eden空间
+2个Survivor空间">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【理解JVM】深入浅出JVM垃圾收集（HotSpot）">
 <meta property="og:url" content="http://yoursite.com/2016/04/15/【理解JVM】深入浅出JVM垃圾收集（HotSpot）/index.html">
 <meta property="og:site_name" content="Miomin">
-<meta property="og:description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
+<meta property="og:description" content="引言：我的上一篇博文提到JVM运行时的内存分块和GC的基本思想及算法，在GC的道路上越走越远，接下来要做的就是 深入浅出JVM的垃圾收集机制。
 
-引言：我的上一篇博文提到JVM运行时的内存分块和GC的基本思想及算法，在GC的道路上越走越远，接下来要做的就是 深入浅出JVM的垃圾收集机制。
+一、分代垃圾回收1、新生代：大部分刚被创建的对象被分配到这里，生命周期短，被创建后很快变成不可达。在新生代区域内发生的GC称为minor GC。
+新生代被划分为三个区域：
 
-一、分代垃圾回收1、新">
-<meta property="og:updated_time" content="2016-04-19T13:37:18.000Z">
+1个Eden空间
+2个Survivor空间">
+<meta property="og:updated_time" content="2016-04-19T15:10:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【理解JVM】深入浅出JVM垃圾收集（HotSpot）">
-<meta name="twitter:description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
+<meta name="twitter:description" content="引言：我的上一篇博文提到JVM运行时的内存分块和GC的基本思想及算法，在GC的道路上越走越远，接下来要做的就是 深入浅出JVM的垃圾收集机制。
 
-引言：我的上一篇博文提到JVM运行时的内存分块和GC的基本思想及算法，在GC的道路上越走越远，接下来要做的就是 深入浅出JVM的垃圾收集机制。
+一、分代垃圾回收1、新生代：大部分刚被创建的对象被分配到这里，生命周期短，被创建后很快变成不可达。在新生代区域内发生的GC称为minor GC。
+新生代被划分为三个区域：
 
-一、分代垃圾回收1、新">
+1个Eden空间
+2个Survivor空间">
   
     <link rel="alternative" href="/atom.xml" title="Miomin" type="application/atom+xml">
   
@@ -97,7 +100,7 @@ var _hmt = _hmt || [];
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -235,10 +238,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty" target="_blank" rel="external">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<p><strong><em>引言</em></strong>：我的上一篇博文提到JVM运行时的内存分块和GC的基本思想及算法，在GC的道路上越走越远，接下来要做的就是 <a href="1">深入浅出JVM的垃圾收集机制</a>。</p>
+        <p><strong><em>引言</em></strong>：我的上一篇博文提到JVM运行时的内存分块和GC的基本思想及算法，在GC的道路上越走越远，接下来要做的就是 <a href="1">深入浅出JVM的垃圾收集机制</a>。</p>
 <hr>
 <h2 id="一、分代垃圾回收"><a href="#一、分代垃圾回收" class="headerlink" title="一、分代垃圾回收"></a>一、分代垃圾回收</h2><p><strong><em>1、新生代</em></strong>：大部分刚被创建的对象被分配到这里，生命周期短，被创建后很快变成不可达。在新生代区域内发生的GC称为<a href="1">minor GC</a>。</p>
 <p><strong><em>新生代被划分为三个区域：</em></strong></p>
@@ -337,6 +337,9 @@ var _hmt = _hmt || [];
 <li>如果在Eden中经过第一次Minor GC后还能存活，并且Survivor可以存放该对象，就将对象移入Survivor，Age设为1，在Survivor中每经过一次Minor GC，Age都会加1。（可以配置Age阈值）</li>
 <li>动态对象年龄判定：没必要一定等到Age达到阈值，如果Survivor中相同Age的对象的大小总和大于Survivor的一半，Age大于等于该Age的对象都进入老年区。</li>
 </ul>
+<hr>
+<p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty" target="_blank" rel="external">https://github.com/miomin/AndroidDifficulty</a></p>
+<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
 
       
     </div>
@@ -417,10 +420,10 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 莫绪旻
+    		&copy; 2015-2016 莫绪旻
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		Total Visited <a href="#">12698</a> Times
       	</div>
     </div>
   </div>

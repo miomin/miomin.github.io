@@ -15,28 +15,22 @@ var _hmt = _hmt || [];
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>【Java并发编程】对比synchronized和Lock | Miomin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
+  <meta name="description" content="引言：在Java中，可以使用关键字synchronized来实现同步访问，从Java 5之后，在java.util.concurrent.locks包下提供了另外一种方式来实现同步访问，那就是Lock。既然都可以通过synchronized来实现同步访问了，那么为什么还需要提供Lock？那得先从synchronized的缺陷讲起。
 
-
-引言：在Java中，可以使用关键字synchronized来实现同步访问，从Java 5之后，在java.util.concurrent.locks包下提供了另外一种">
+转载自海子：《Java并发编程：Lock》">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Java并发编程】对比synchronized和Lock">
 <meta property="og:url" content="http://yoursite.com/2016/03/11/【Java并发编程】对比synchronized和Lock/index.html">
 <meta property="og:site_name" content="Miomin">
-<meta property="og:description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
+<meta property="og:description" content="引言：在Java中，可以使用关键字synchronized来实现同步访问，从Java 5之后，在java.util.concurrent.locks包下提供了另外一种方式来实现同步访问，那就是Lock。既然都可以通过synchronized来实现同步访问了，那么为什么还需要提供Lock？那得先从synchronized的缺陷讲起。
 
-
-引言：在Java中，可以使用关键字synchronized来实现同步访问，从Java 5之后，在java.util.concurrent.locks包下提供了另外一种">
-<meta property="og:updated_time" content="2016-04-19T13:35:52.000Z">
+转载自海子：《Java并发编程：Lock》">
+<meta property="og:updated_time" content="2016-04-19T15:05:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Java并发编程】对比synchronized和Lock">
-<meta name="twitter:description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
+<meta name="twitter:description" content="引言：在Java中，可以使用关键字synchronized来实现同步访问，从Java 5之后，在java.util.concurrent.locks包下提供了另外一种方式来实现同步访问，那就是Lock。既然都可以通过synchronized来实现同步访问了，那么为什么还需要提供Lock？那得先从synchronized的缺陷讲起。
 
-
-引言：在Java中，可以使用关键字synchronized来实现同步访问，从Java 5之后，在java.util.concurrent.locks包下提供了另外一种">
+转载自海子：《Java并发编程：Lock》">
   
     <link rel="alternative" href="/atom.xml" title="Miomin" type="application/atom+xml">
   
@@ -94,7 +88,7 @@ var _hmt = _hmt || [];
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -232,13 +226,11 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty" target="_blank" rel="external">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<ul>
+        <ul>
 <li><strong><em>引言：</em></strong>在Java中，可以使用关键字synchronized来实现同步访问，从Java 5之后，在java.util.concurrent.locks包下提供了另外一种方式来实现同步访问，那就是Lock。既然都可以通过synchronized来实现同步访问了，那么为什么还需要提供Lock？那得先从synchronized的缺陷讲起。</li>
 </ul>
-<p>转载自海子的博文：<a href="http://www.cnblogs.com/dolphin0520/p/3923167.html" target="_blank" rel="external">《Java并发编程：Lock》</a></p>
+<p>转载自海子：<a href="http://www.cnblogs.com/dolphin0520/p/3923167.html" target="_blank" rel="external">《Java并发编程：Lock》</a></p>
+<a id="more"></a>
 <hr>
 <h2 id="一、synchronized的缺陷"><a href="#一、synchronized的缺陷" class="headerlink" title="一、synchronized的缺陷"></a>一、synchronized的缺陷</h2><p>　　synchronized是java中的一个关键字，也就是说是JVM内置的特性，加锁到释放所的所有过程都由JVM来完成，程序员是不可见的。</p>
 <p>　　如果一个代码块被synchronized修饰了，当一个线程获取了对应的锁，并执行该代码块时，其他线程便只能一直等待，等待获取锁的线程释放锁，而这里获取锁的线程释放锁只会有两种情况：</p>
@@ -255,7 +247,6 @@ var _hmt = _hmt || [];
 <p>　　1）Lock不是Java语言内置的，synchronized是Java语言的关键字，因此是内置特性。Lock是一个类，通过这个类可以实现同步访问；</p>
 <p>　　2）Lock和synchronized有一点非常大的不同，采用synchronized不需要用户去手动释放锁，当synchronized方法或者synchronized代码块执行完之后，系统会自动让线程释放对锁的占用；而Lock则必须要用户去手动释放锁，如果没有主动释放锁，就有可能导致出现死锁现象。</p>
 <hr>
-<a id="more"></a>
 <h2 id="二、java-util-concurrent-locks包下常用的类"><a href="#二、java-util-concurrent-locks包下常用的类" class="headerlink" title="二、java.util.concurrent.locks包下常用的类"></a>二、java.util.concurrent.locks包下常用的类</h2><h3 id="1、Lock"><a href="#1、Lock" class="headerlink" title="1、Lock"></a>1、Lock</h3><p>首先要说明的就是Lock，通过查看Lock的源码可知，Lock是一个接口。</p>
 <p>　　首先lock()方法是平常使用得最多的一个方法，就是用来获取锁。如果锁已被其他线程获取，则进行等待。</p>
 <p>　　由于在前面讲到如果采用Lock，必须主动去释放锁，并且在发生异常时，不会自动释放锁。因此一般来说，使用Lock必须在try{}catch{}块中进行，并且将释放锁的操作放在finally块中进行，以保证锁一定被被释放，防止死锁的发生。通常使用Lock来进行同步的话，是以下面这种形式去使用的：<br>　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Lock lock = ...;</span><br><span class="line">lock.lock();</span><br><span class="line">try&#123;</span><br><span class="line">    //处理任务</span><br><span class="line">&#125;catch(Exception ex)&#123;</span><br><span class="line">     </span><br><span class="line">&#125;finally&#123;</span><br><span class="line">    lock.unlock();   //释放锁</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -294,6 +285,9 @@ var _hmt = _hmt || [];
 <p>　　在前面演示lockInterruptibly()的用法时已经体现了Lock的可中断性。</p>
 <h3 id="3、公平锁"><a href="#3、公平锁" class="headerlink" title="3、公平锁"></a>3、公平锁</h3><p>　　公平锁即尽量以请求锁的顺序来获取锁。比如同是有多个线程在等待一个锁，当这个锁被释放时，等待时间最久的线程（最先请求的线程）会获得该所，这种就是公平锁。<br>　　非公平锁即无法保证锁的获取是按照请求锁的顺序进行的。这样就可能导致某个或者一些线程永远获取不到锁。<br>　　在Java中，synchronized就是非公平锁，它无法保证等待的线程获取锁的顺序。<br>　　而对于ReentrantLock和ReentrantReadWriteLock，它默认情况下是非公平锁，但是可以设置为公平锁。</p>
 <h3 id="4、读写锁"><a href="#4、读写锁" class="headerlink" title="4、读写锁"></a>4、读写锁</h3><p>　　读写锁将对一个资源（比如文件）的访问分成了2个锁，一个读锁和一个写锁。<br>　　正因为有了读写锁，才使得多个线程之间的读操作不会发生冲突。<br>　　ReadWriteLock就是读写锁，它是一个接口，ReentrantReadWriteLock实现了这个接口。<br>　　可以通过readLock()获取读锁，通过writeLock()获取写锁。<br>　　上面已经演示过了读写锁的使用方法，在此不再赘述。</p>
+<hr>
+<p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty" target="_blank" rel="external">https://github.com/miomin/AndroidDifficulty</a></p>
+<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
 
       
     </div>
@@ -374,10 +368,10 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 莫绪旻
+    		&copy; 2015-2016 莫绪旻
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		Total Visited <a href="#">12698</a> Times
       	</div>
     </div>
   </div>

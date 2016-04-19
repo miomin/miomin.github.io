@@ -15,15 +15,15 @@ var _hmt = _hmt || [];
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Miomin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不曾凋谢，待我重生，活着总会有好事发生~">
+  <meta name="description" content="Android学习，Android之路，Andorid自学，Andorid难点，Andorid面试，Android重点">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Miomin">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="Miomin">
-<meta property="og:description" content="不曾凋谢，待我重生，活着总会有好事发生~">
+<meta property="og:description" content="Android学习，Android之路，Andorid自学，Andorid难点，Andorid面试，Android重点">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Miomin">
-<meta name="twitter:description" content="不曾凋谢，待我重生，活着总会有好事发生~">
+<meta name="twitter:description" content="Android学习，Android之路，Andorid自学，Andorid难点，Andorid面试，Android重点">
   
     <link rel="alternative" href="/atom.xml" title="Miomin" type="application/atom+xml">
   
@@ -81,7 +81,7 @@ var _hmt = _hmt || [];
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -215,10 +215,6 @@ var _hmt = _hmt || [];
 <hr>
 <p><strong><em>1、学习知识的途径</em></strong></p>
 <p>笔主写这篇文章的时候，是大三下学期，刚刚拿到<a href="1">阿里巴巴</a>和<a href="1">百词斩</a>的实习offer（详见我的面经），学习Android只有一年，平时获取知识的途径主要有：<strong><em>书本</em></strong>、视频教程、<strong><em>博客</em></strong>、<strong><em>Github</em></strong>、Google Android Training系列、知乎、微信公众号。</p>
-<hr>
-<p><strong><em>2、入门 —— 视频学习</em></strong></p>
-<p>大一下初学Java，用的是马士兵老师的视频教程，讲的很详细，很深，也适合初学者，所以马老师应该算是我职业生涯的启蒙老师。后来也会在极客学院、慕课网寻找到一些有价值的视频。</p>
-<hr>
       
     </div>
     
@@ -276,10 +272,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<p><strong><em>引言</em></strong>：我的上一篇博文提到JVM运行时的内存分块和GC的基本思想及算法，在GC的道路上越走越远，接下来要做的就是 <a href="1">深入浅出JVM的垃圾收集机制</a>。</p>
+        <p><strong><em>引言</em></strong>：我的上一篇博文提到JVM运行时的内存分块和GC的基本思想及算法，在GC的道路上越走越远，接下来要做的就是 <a href="1">深入浅出JVM的垃圾收集机制</a>。</p>
 <hr>
 <h2 id="一、分代垃圾回收"><a href="#一、分代垃圾回收" class="headerlink" title="一、分代垃圾回收"></a>一、分代垃圾回收</h2><p><strong><em>1、新生代</em></strong>：大部分刚被创建的对象被分配到这里，生命周期短，被创建后很快变成不可达。在新生代区域内发生的GC称为<a href="1">minor GC</a>。</p>
 <p><strong><em>新生代被划分为三个区域：</em></strong></p>
@@ -344,10 +337,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<h2 id="一、JVM内存分块"><a href="#一、JVM内存分块" class="headerlink" title="一、JVM内存分块"></a>一、JVM内存分块</h2><p>每一个进程会对应一个JVM实例，JVM在执行Java程序时，会将该进程获取到的内存划分成不同的数据块，这些区域有各自不同的用途和生命周期，参考《深入理解JVM虚拟机》，总结出以下结论：</p>
+        <h2 id="一、JVM内存分块"><a href="#一、JVM内存分块" class="headerlink" title="一、JVM内存分块"></a>一、JVM内存分块</h2><p>每一个进程会对应一个JVM实例，JVM在执行Java程序时，会将该进程获取到的内存划分成不同的数据块，这些区域有各自不同的用途和生命周期，参考《深入理解JVM虚拟机》，总结出以下结论：</p>
 <ul>
 <li><strong>（1）PC</strong>：每个线程有独立的PC，PC的值指向程序即将执行的下一条指令的地址。</li>
 <li><strong>（2）JVM Stack</strong>：每个线程都拥有一个，每个方法在执行时都会创建一个栈帧，存储所有的局部变量，返回地址等等。（局部变量的对象的引用存在Stack中，对象实例存在Java Heap中）</li>
@@ -416,10 +406,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<ul>
+        <ul>
 <li>前几天去国内某二线互联网企业参加实习生面试，与面试官讨论Server上允许的最大TCP连接数是多少。我回答，由于资源限制或其他客观因素，一般保持3000-4000的连接就死掉了。面试官问我，如果不考虑这些因素，理论上的最大连接数应该是多少？</li>
 </ul>
 <ul>
@@ -485,10 +472,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<h2 id="一、内存泄露"><a href="#一、内存泄露" class="headerlink" title="一、内存泄露"></a>一、内存泄露</h2><ul>
+        <h2 id="一、内存泄露"><a href="#一、内存泄露" class="headerlink" title="一、内存泄露"></a>一、内存泄露</h2><ul>
 <li>垃圾回收器无法回收原本应该被回收的对象，这个对象就引发了内存泄露。</li>
 <li>内存泄露的危害：<ul>
 <li>（1）过多的内存泄露最终会导致内存溢出（OOM）</li>
@@ -554,24 +538,8 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<p><strong><em>写在前面：</em></strong>笔者的上一篇博文有提到过，如果不恰当的使用Bitmap，很容易造成OOM。这篇博文就来谈谈应该如何正确的管理Bitmap的内存，以及优化策略。</p>
+        <p><strong><em>写在前面：</em></strong>笔者的上一篇博文有提到过，如果不恰当的使用Bitmap，很容易造成OOM。这篇博文就来谈谈应该如何正确的管理Bitmap的内存，以及优化策略。</p>
 <p><strong><em>参考：</em></strong> Google官方教程 – <a href="http://developer.android.com/training/displaying-bitmaps/index.html">《Android Training Ccourse》</a></p>
-<hr>
-<h3 id="一、加载按显示需要的比例缩小的图片"><a href="#一、加载按显示需要的比例缩小的图片" class="headerlink" title="一、加载按显示需要的比例缩小的图片"></a>一、加载按显示需要的比例缩小的图片</h3><p><strong><em>1、先来说说屏幕密度</em></strong></p>
-<ul>
-<li><p>在Android中，Imageview控件的长宽单位一般设置为dp/dip，而不用px。这样做的原因，是因为dp/dip与屏幕像素密度无关，px与屏幕密度有关。在Android中，规定以160dpi为基准，1dip=1px，如果密度是320dpi，则1dip=2px。（所以，同一个imageview，在不同的设备上所显示的长宽的像素是不同的，我们需要根据像素不同，来按比例压缩大图）</p>
-</li>
-<li><p>如果把一个大小为1024x1024像素的图片显示到大小为512x512像素的ImageView上吗，就没有必要加载整张原图到Bitmap中。</p>
-</li>
-<li><p>为了告诉解码器去加载一个缩小比例是多少的图片到内存中，需要在BitmapFactory.Options 中设置 inSampleSize 的值。例如, 一个分辨率为2048x2048的图片，如果设置 inSampleSize 为4，那么会产出一个大约512x512大小的Bitmap。</p>
-</li>
-<li><p>下面的代码是动态获取一个ImageView的长宽像素：<br><strong>注意：</strong>返回的是像素值（px），而不是dp/dip</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int reqHeight = iv.getLayoutParams().height;</span><br><span class="line">int reqWidth = iv.getLayoutParams().width;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
       
     </div>
     
@@ -629,10 +597,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<p>引言：这几天在捣鼓Hashmap跟Hashtable的源码，其中关注的 比较多的就是他两计算在Entry[]数组中index的方法到底有什么区别。</p>
+        <p>引言：这几天在捣鼓Hashmap跟Hashtable的源码，其中关注的 比较多的就是他两计算在Entry[]数组中index的方法到底有什么区别。</p>
       
     </div>
     
@@ -690,10 +655,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<p>【参考资料】<br>1、<a href="http://developer.android.com/training/improving-layouts/optimizing-layout.html">http://developer.android.com/training/improving-layouts/optimizing-layout.html</a><br>2、何红辉前辈 – <a href="1">《Android开发进阶—-从小工到专家》</a><br>3、Herve Guihot – <a href="1">《Pro Android Apps Performance Optimization》</a></p>
+        <p>【参考资料】<br>1、<a href="http://developer.android.com/training/improving-layouts/optimizing-layout.html">http://developer.android.com/training/improving-layouts/optimizing-layout.html</a><br>2、何红辉前辈 – <a href="1">《Android开发进阶—-从小工到专家》</a><br>3、Herve Guihot – <a href="1">《Pro Android Apps Performance Optimization》</a></p>
 <hr>
 <h2 id="一、优化Layout层级"><a href="#一、优化Layout层级" class="headerlink" title="一、优化Layout层级"></a>一、优化Layout层级</h2><p>　　APP的每个View和Layout都需要经过Measure、Layout和Draw三个过程，如果布局层级过深，这个过程就会非常耗时。所以减少Layout的层级是优化布局性能的一个重要手段。本文将介绍通过include、merge、ViewStub三种手段来进行Android布局层级优化。</p>
 <p>推荐一个布局检测工具：<br>　　<strong><em>Hierarchy Viewer ：</em></strong>能够在程序运行时分析 Layout，可以用这个工具找到 Layout 的性能瓶颈。
@@ -756,29 +718,10 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<ul>
+        <ul>
 <li><strong><em>引言：</em></strong>在Java中，可以使用关键字synchronized来实现同步访问，从Java 5之后，在java.util.concurrent.locks包下提供了另外一种方式来实现同步访问，那就是Lock。既然都可以通过synchronized来实现同步访问了，那么为什么还需要提供Lock？那得先从synchronized的缺陷讲起。</li>
 </ul>
-<p>转载自海子的博文：<a href="http://www.cnblogs.com/dolphin0520/p/3923167.html">《Java并发编程：Lock》</a></p>
-<hr>
-<h2 id="一、synchronized的缺陷"><a href="#一、synchronized的缺陷" class="headerlink" title="一、synchronized的缺陷"></a>一、synchronized的缺陷</h2><p>　　synchronized是java中的一个关键字，也就是说是JVM内置的特性，加锁到释放所的所有过程都由JVM来完成，程序员是不可见的。</p>
-<p>　　如果一个代码块被synchronized修饰了，当一个线程获取了对应的锁，并执行该代码块时，其他线程便只能一直等待，等待获取锁的线程释放锁，而这里获取锁的线程释放锁只会有两种情况：</p>
-<p>　　1）获取锁的线程执行完了该代码块，然后线程释放对锁的占有；</p>
-<p>　　2）线程执行发生异常，此时JVM会让线程自动释放锁。</p>
-<p>　　那么如果这个获取锁的线程由于要等待IO或者其他原因（比如调用sleep方法）被阻塞了，但是又没有释放锁，其他线程便只能干巴巴地等待，试想一下，这多么影响程序执行效率。</p>
-<p>　　因此就需要有一种机制可以不让等待的线程一直无期限地等待下去（比如只等待一定的时间或者能够响应中断），通过Lock就可以办到。</p>
-<p>　　再举个例子：当有多个线程读写文件时，读操作和写操作会发生冲突现象，写操作和写操作会发生冲突现象，但是读操作和读操作不会发生冲突现象。</p>
-<p>　　但是采用synchronized关键字来实现同步的话，就会导致一个问题：</p>
-<p>　　如果多个线程都只是进行读操作，所以当一个线程在进行读操作时，其他线程只能等待无法进行读操作。</p>
-<p>　　因此就需要一种机制来使得多个线程都只是进行读操作时，线程之间不会发生冲突，通过Lock就可以办到。</p>
-<p>　　另外，通过Lock可以知道线程有没有成功获取到锁。这个是synchronized无法办到的。</p>
-<p>　　总结一下，也就是说Lock提供了比synchronized更多的功能。但是要注意以下几点：</p>
-<p>　　1）Lock不是Java语言内置的，synchronized是Java语言的关键字，因此是内置特性。Lock是一个类，通过这个类可以实现同步访问；</p>
-<p>　　2）Lock和synchronized有一点非常大的不同，采用synchronized不需要用户去手动释放锁，当synchronized方法或者synchronized代码块执行完之后，系统会自动让线程释放对锁的占用；而Lock则必须要用户去手动释放锁，如果没有主动释放锁，就有可能导致出现死锁现象。</p>
-<hr>
+<p>转载自海子：<a href="http://www.cnblogs.com/dolphin0520/p/3923167.html">《Java并发编程：Lock》</a></p>
       
     </div>
     
@@ -836,10 +779,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<p>参考资料：<a href="1">《Thinging in Java》</a></p>
+        <p>参考资料：<a href="1">《Thinging in Java》</a></p>
 <p>引言：在较早的Java代码中，是使用suspend（）和resume（）来终止和唤醒线程，但是现在已经被废止了，因为可能导致死锁。stop（）强制终止线程的方式也已经不推荐使用，因为它不释放线程获得的锁，还会产生一些不可预料的后果。下面看看《Thinging in Java》中建议我们如何来终止线程。</p>
       
     </div>
@@ -898,10 +838,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<p><strong><em>引言：</em></strong>初学Android的时候，对Service是草草了之，现在反过来复习，才发现自己有很多知识没有掌握，在这里总结一下。Service是Android的四大组件之一，是Android中实现程序后台运行最合适的解决方案之一，非常适合被用于去执行那些不需要和用户界面交互而且要求长期运行的任务。</p>
+        <p><strong><em>引言：</em></strong>初学Android的时候，对Service是草草了之，现在反过来复习，才发现自己有很多知识没有掌握，在这里总结一下。Service是Android的四大组件之一，是Android中实现程序后台运行最合适的解决方案之一，非常适合被用于去执行那些不需要和用户界面交互而且要求长期运行的任务。</p>
       
     </div>
     
@@ -959,26 +896,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<h1 id="数据结构总结之线性表、栈和队列"><a href="#数据结构总结之线性表、栈和队列" class="headerlink" title="数据结构总结之线性表、栈和队列"></a>数据结构总结之线性表、栈和队列</h1><p>数据结构的课程结束了两年，当时整理的手写笔记弄丢了，回头来看书，发现很多知识点已然生疏，准备写几篇博文整理一下。</p>
-<hr>
-<h3 id="一、线性表"><a href="#一、线性表" class="headerlink" title="一、线性表"></a>一、线性表</h3><p>概念：线性表是由称为元素（element）的数据项组成的一种有限且有序的序列。线性表分为顺序表和链表两种。</p>
-<h4 id="1-顺序表的特点"><a href="#1-顺序表的特点" class="headerlink" title="(1)顺序表的特点"></a>(1)顺序表的特点</h4><ul>
-<li>查询元素：可以通过index访问任意元素，访问元素的时间花费为O(1)</li>
-<li>添加和删除元素：如果在有n个元素的表的第i个位置插入元素或者删除元素，i后面的元素都需要向后或者向前移动位置，时间花费为O(n)</li>
-<li>顺序表元素存储的内存空间是连续的<h4 id="2-链表的特点"><a href="#2-链表的特点" class="headerlink" title="(2)链表的特点"></a>(2)链表的特点</h4><ul>
-<li>使用指针实现的线性表称为链表</li>
-<li>链表的内存空间是动态分配</li>
-<li>链表元素存储的内存空间不是连续的</li>
-<li>查询元素：需要遍历查询，时间代价为O(n)</li>
-<li>增删元素：忽略查找删除对象的时间，直接对next指针进行操作，时间代价为O(1)</li>
-<li>需要header node来解决空链表的问题，header node的value为null，next指向链表第一个元素。<h4 id="3-链表的Java实现"><a href="#3-链表的Java实现" class="headerlink" title="(3)链表的Java实现"></a>(3)链表的Java实现</h4></li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class MyLinkedList &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="数据结构总结之线性表、栈和队列"><a href="#数据结构总结之线性表、栈和队列" class="headerlink" title="数据结构总结之线性表、栈和队列"></a>数据结构总结之线性表、栈和队列</h1><p>数据结构的课程结束了两年，当时整理的手写笔记弄丢了，回头来看书，发现很多知识点已然生疏，准备写几篇博文整理一下。</p>
       
     </div>
     
@@ -1018,10 +936,10 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 莫绪旻
+    		&copy; 2015-2016 莫绪旻
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		Total Visited <a href="#">12698</a> Times
       	</div>
     </div>
   </div>

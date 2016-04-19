@@ -15,38 +15,29 @@ var _hmt = _hmt || [];
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>【Android性能优化】内存泄露和内存溢出（OOM）的引发原因及优化方案 | Miomin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
-
-一、内存泄露
+  <meta name="description" content="一、内存泄露
 垃圾回收器无法回收原本应该被回收的对象，这个对象就引发了内存泄露。
 内存泄露的危害：
 （1）过多的内存泄露最终会导致内存溢出（OOM）
-（2）内存泄露导致">
+（2）内存泄露导致可用内存不足，会触发频繁GC，不管是Android2.2以前的单线程GC还是现在的CMS和G1，都有一部分的操作会导致用户线程停止（就是所谓的Stop the world），从而导致UI卡顿。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Android性能优化】内存泄露和内存溢出（OOM）的引发原因及优化方案">
 <meta property="og:url" content="http://yoursite.com/2016/03/28/【Android性能优化】内存泄露和内存溢出（OOM）的引发原因及优化方案/index.html">
 <meta property="og:site_name" content="Miomin">
-<meta property="og:description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
-
-一、内存泄露
+<meta property="og:description" content="一、内存泄露
 垃圾回收器无法回收原本应该被回收的对象，这个对象就引发了内存泄露。
 内存泄露的危害：
 （1）过多的内存泄露最终会导致内存溢出（OOM）
-（2）内存泄露导致">
+（2）内存泄露导致可用内存不足，会触发频繁GC，不管是Android2.2以前的单线程GC还是现在的CMS和G1，都有一部分的操作会导致用户线程停止（就是所谓的Stop the world），从而导致UI卡顿。">
 <meta property="og:image" content="http://img.blog.csdn.net/20160331144232258">
-<meta property="og:updated_time" content="2016-04-19T13:36:23.000Z">
+<meta property="og:updated_time" content="2016-04-19T15:07:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Android性能优化】内存泄露和内存溢出（OOM）的引发原因及优化方案">
-<meta name="twitter:description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
-
-一、内存泄露
+<meta name="twitter:description" content="一、内存泄露
 垃圾回收器无法回收原本应该被回收的对象，这个对象就引发了内存泄露。
 内存泄露的危害：
 （1）过多的内存泄露最终会导致内存溢出（OOM）
-（2）内存泄露导致">
+（2）内存泄露导致可用内存不足，会触发频繁GC，不管是Android2.2以前的单线程GC还是现在的CMS和G1，都有一部分的操作会导致用户线程停止（就是所谓的Stop the world），从而导致UI卡顿。">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20160331144232258">
   
     <link rel="alternative" href="/atom.xml" title="Miomin" type="application/atom+xml">
@@ -105,7 +96,7 @@ var _hmt = _hmt || [];
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -243,10 +234,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty" target="_blank" rel="external">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<h2 id="一、内存泄露"><a href="#一、内存泄露" class="headerlink" title="一、内存泄露"></a>一、内存泄露</h2><ul>
+        <h2 id="一、内存泄露"><a href="#一、内存泄露" class="headerlink" title="一、内存泄露"></a>一、内存泄露</h2><ul>
 <li>垃圾回收器无法回收原本应该被回收的对象，这个对象就引发了内存泄露。</li>
 <li>内存泄露的危害：<ul>
 <li>（1）过多的内存泄露最终会导致内存溢出（OOM）</li>
@@ -398,6 +386,9 @@ var _hmt = _hmt || [];
 <li><a href="http://hukai.me/android-performance-memory/" target="_blank" rel="external">Android性能优化之内存篇</a></li>
 <li><a href="http://hukai.me/android-training-course-in-chinese/graphics/displaying-bitmaps/manage-memory.html" target="_blank" rel="external">Android官方学习教程</a></li>
 </ul>
+<hr>
+<p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty" target="_blank" rel="external">https://github.com/miomin/AndroidDifficulty</a></p>
+<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
 
       
     </div>
@@ -478,10 +469,10 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 莫绪旻
+    		&copy; 2015-2016 莫绪旻
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		Total Visited <a href="#">12698</a> Times
       	</div>
     </div>
   </div>

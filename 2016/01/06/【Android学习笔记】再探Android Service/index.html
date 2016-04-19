@@ -15,26 +15,17 @@ var _hmt = _hmt || [];
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>【Android学习笔记】再探Android Service | Miomin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
-
-引言：初学Android的时候，对Service是草草了之，现在反过来复习，才发现自己有很多知识没有掌握，在这里总结一下。Service是Android的四大组件之一，">
+  <meta name="description" content="引言：初学Android的时候，对Service是草草了之，现在反过来复习，才发现自己有很多知识没有掌握，在这里总结一下。Service是Android的四大组件之一，是Android中实现程序后台运行最合适的解决方案之一，非常适合被用于去执行那些不需要和用户界面交互而且要求长期运行的任务。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Android学习笔记】再探Android Service">
 <meta property="og:url" content="http://yoursite.com/2016/01/06/【Android学习笔记】再探Android Service/index.html">
 <meta property="og:site_name" content="Miomin">
-<meta property="og:description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
-
-引言：初学Android的时候，对Service是草草了之，现在反过来复习，才发现自己有很多知识没有掌握，在这里总结一下。Service是Android的四大组件之一，">
+<meta property="og:description" content="引言：初学Android的时候，对Service是草草了之，现在反过来复习，才发现自己有很多知识没有掌握，在这里总结一下。Service是Android的四大组件之一，是Android中实现程序后台运行最合适的解决方案之一，非常适合被用于去执行那些不需要和用户界面交互而且要求长期运行的任务。">
 <meta property="og:image" content="http://img.blog.csdn.net/20160314224113731">
-<meta property="og:updated_time" content="2016-04-19T13:36:04.000Z">
+<meta property="og:updated_time" content="2016-04-19T15:06:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Android学习笔记】再探Android Service">
-<meta name="twitter:description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
-如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
-
-引言：初学Android的时候，对Service是草草了之，现在反过来复习，才发现自己有很多知识没有掌握，在这里总结一下。Service是Android的四大组件之一，">
+<meta name="twitter:description" content="引言：初学Android的时候，对Service是草草了之，现在反过来复习，才发现自己有很多知识没有掌握，在这里总结一下。Service是Android的四大组件之一，是Android中实现程序后台运行最合适的解决方案之一，非常适合被用于去执行那些不需要和用户界面交互而且要求长期运行的任务。">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20160314224113731">
   
     <link rel="alternative" href="/atom.xml" title="Miomin" type="application/atom+xml">
@@ -93,7 +84,7 @@ var _hmt = _hmt || [];
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -231,10 +222,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty" target="_blank" rel="external">https://github.com/miomin/AndroidDifficulty</a></p>
-<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
-<hr>
-<p><strong><em>引言：</em></strong>初学Android的时候，对Service是草草了之，现在反过来复习，才发现自己有很多知识没有掌握，在这里总结一下。Service是Android的四大组件之一，是Android中实现程序后台运行最合适的解决方案之一，非常适合被用于去执行那些不需要和用户界面交互而且要求长期运行的任务。</p>
+        <p><strong><em>引言：</em></strong>初学Android的时候，对Service是草草了之，现在反过来复习，才发现自己有很多知识没有掌握，在这里总结一下。Service是Android的四大组件之一，是Android中实现程序后台运行最合适的解决方案之一，非常适合被用于去执行那些不需要和用户界面交互而且要求长期运行的任务。</p>
 <a id="more"></a>
 <hr>
 <h2 id="1、创建一个Service"><a href="#1、创建一个Service" class="headerlink" title="1、创建一个Service"></a>1、创建一个Service</h2><ul>
@@ -287,6 +275,9 @@ var _hmt = _hmt || [];
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public IBinder onBind(Intent intent) &#123;</span><br><span class="line">	return new IAppServiceAidlInterface.Stub() &#123;</span><br><span class="line">		@Override</span><br><span class="line">		public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public void setData(String data) throws RemoteException &#123;</span><br><span class="line">			AppService.this.data = data;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		@Override</span><br><span class="line">		public List&lt;Car&gt; getAllCar() throws RemoteException &#123;</span><br><span class="line">			return null;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="3、在需要跨进程操作Service的Activity中接受Binder对象"><a href="#3、在需要跨进程操作Service的Activity中接受Binder对象" class="headerlink" title="3、在需要跨进程操作Service的Activity中接受Binder对象"></a>3、在需要跨进程操作Service的Activity中接受Binder对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onServiceConnected(ComponentName name, IBinder service) &#123;</span><br><span class="line">	IAppServiceAidlInterface AIDLBinder = IAppServiceAidlInterface.Stub.asInterface(service);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty" target="_blank" rel="external">https://github.com/miomin/AndroidDifficulty</a></p>
+<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
 
       
     </div>
@@ -367,10 +358,10 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 莫绪旻
+    		&copy; 2015-2016 莫绪旻
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		Total Visited <a href="#">12698</a> Times
       	</div>
     </div>
   </div>
