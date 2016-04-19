@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?caf55854d144d2d08223e662c290b0a8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>【Android学习笔记】再探Android Service | Miomin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
+如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
+
+引言：初学Android的时候，对Service是草草了之，现在反过来复习，才发现自己有很多知识没有掌握，在这里总结一下。Service是Android的四大组件之一，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Android学习笔记】再探Android Service">
+<meta property="og:url" content="http://yoursite.com/2016/01/06/【Android学习笔记】再探Android Service/index.html">
+<meta property="og:site_name" content="Miomin">
+<meta property="og:description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
+如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
+
+引言：初学Android的时候，对Service是草草了之，现在反过来复习，才发现自己有很多知识没有掌握，在这里总结一下。Service是Android的四大组件之一，">
+<meta property="og:image" content="http://img.blog.csdn.net/20160314224113731">
+<meta property="og:updated_time" content="2016-04-19T13:36:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Android学习笔记】再探Android Service">
+<meta name="twitter:description" content="我把Android重难点和读书笔记都整理在github上：https://github.com/miomin/AndroidDifficulty
+如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。
+
+引言：初学Android的时候，对Service是草草了之，现在反过来复习，才发现自己有很多知识没有掌握，在这里总结一下。Service是Android的四大组件之一，">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160314224113731">
+  
+    <link rel="alternative" href="/atom.xml" title="Miomin" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/uploads/avatar.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/uploads/avatar.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">莫绪旻</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">不曾凋谢，待我重生，活着总会有好事发生~</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/miomin" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Andorid/" style="font-size: 15px;">Andorid</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Android学习笔记/" style="font-size: 10px;">Android学习笔记</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java基础/" style="font-size: 15px;">Java基础</a> <a href="/tags/Java并发/" style="font-size: 10px;">Java并发</a> <a href="/tags/Java并发编程/" style="font-size: 10px;">Java并发编程</a> <a href="/tags/个人经验/" style="font-size: 10px;">个人经验</a> <a href="/tags/性能优化/" style="font-size: 20px;">性能优化</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">不曾凋谢，待我重生，活着总会有好事发生~</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">莫绪旻</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/uploads/avatar.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">莫绪旻</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">不曾凋谢，待我重生，活着总会有好事发生~</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/miomin" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-【Android学习笔记】再探Android Service" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/06/【Android学习笔记】再探Android Service/" class="article-date">
+  	<time datetime="2016-01-06T06:58:16.000Z" itemprop="datePublished">2016-01-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【Android学习笔记】再探Android Service
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android学习笔记/">Android学习笔记</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong><em>我把Android重难点和读书笔记都整理在github上：</em></strong><a href="https://github.com/miomin/AndroidDifficulty" target="_blank" rel="external">https://github.com/miomin/AndroidDifficulty</a></p>
+<p><strong><em>如果你觉得对你有帮助的话，希望可以star/follow一下哟，我会持续保持更新。</em></strong></p>
+<hr>
+<p><strong><em>引言：</em></strong>初学Android的时候，对Service是草草了之，现在反过来复习，才发现自己有很多知识没有掌握，在这里总结一下。Service是Android的四大组件之一，是Android中实现程序后台运行最合适的解决方案之一，非常适合被用于去执行那些不需要和用户界面交互而且要求长期运行的任务。</p>
+<a id="more"></a>
+<hr>
+<h2 id="1、创建一个Service"><a href="#1、创建一个Service" class="headerlink" title="1、创建一个Service"></a>1、创建一个Service</h2><ul>
+<li><p>服务中常用的几个方法分别是onCreate（）、onStartCommand（）、onDestroy（）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//每次服务启动时都会调用</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">onStartCommand</span><span class="params">(Intent intent, <span class="keyword">int</span> flags, <span class="keyword">int</span> startId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onStartCommand(intent, flags, startId);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//在服务第一次创建的时候调用，放只需要执行一次的代码</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//服务销毁的时候调用</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在AndroidManifest.xml注册Service</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">service</span></span><br><span class="line">	<span class="attr">android:name</span>=<span class="string">".MyService"</span></span><br><span class="line">	<span class="attr">android:enabled</span>=<span class="string">"true"</span></span><br><span class="line">	<span class="attr">android:exported</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">service</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="2、启动和停止Service"><a href="#2、启动和停止Service" class="headerlink" title="2、启动和停止Service"></a>2、启动和停止Service</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//启动服务</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">	startService(<span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, MyService.class));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//停止服务      </span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">	stopService(<span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>,MyService.class));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="3、绑定Service"><a href="#3、绑定Service" class="headerlink" title="3、绑定Service"></a>3、绑定Service</h2><ul>
+<li>注意：startService()、stopService()和bindService()、unbindService()是成对出现的方法，startService()后，执行stopService()即可停止服务，bindService()后，执行unbindService()也可接除与服务的绑定；但是如果startService()后，接着调用bindService()，想要停止服务，必须先执行stopService()，再调用unbindService()。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">	bindService(<span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>,MyService.class), MainActivity.<span class="keyword">this</span>, Context.BIND_AUTO_CREATE);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">	unbindService(MainActivity.<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>还需要在启动Service的Activity里重写两个方法<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</span><br><span class="line">        Log.i(<span class="string">"miomin"</span>, <span class="string">"服务连接成功"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</span><br><span class="line">        Log.i(<span class="string">"miomin"</span>, <span class="string">"服务连接关闭"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="4、Service的生命周期"><a href="#4、Service的生命周期" class="headerlink" title="4、Service的生命周期"></a>4、Service的生命周期</h2><ul>
+<li>下图可以看到，使用startService()启动Service和bindService()启动Service，所经历的生命周期是不同的。<br><img src="http://img.blog.csdn.net/20160314224113731" alt="来自Google的Service生命周期图"></li>
+</ul>
+<p>想要更详细的了解Service生命周期，可以参考这篇<strong>博文</strong>，<a href="http://blog.csdn.net/agods/article/details/7468431" target="_blank" rel="external">Activity和Service的生命周期（图）</a></p>
+<hr>
+<h2 id="5、跨应用启动和板吊顶Service"><a href="#5、跨应用启动和板吊顶Service" class="headerlink" title="5、跨应用启动和板吊顶Service"></a>5、跨应用启动和板吊顶Service</h2><p>Android5.0以后，禁止使用隐式Intent启动Service，必须使用显式意图，对于跨引用启动，我们必须指明被作为启动对象的Service的完整包名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//使用包名构造显示意图</span><br><span class="line">private Intent intent = new Intent();</span><br><span class="line">intent.setComponent(new ComponentName(&quot;scu.miomin.com.learnaidl&quot;, &quot;scu.miomin.com.learnaidl.AppService&quot;));</span><br><span class="line"></span><br><span class="line">switch (id) &#123;</span><br><span class="line">	case R.id.btnStartService:</span><br><span class="line">		startService(intent);</span><br><span class="line">		break;</span><br><span class="line">	case R.id.btnStopService:</span><br><span class="line">		stopService(intent);</span><br><span class="line">		break;</span><br><span class="line">	case R.id.btnBindService:</span><br><span class="line">		bindService(intent, MainActivity.this,Context.BIND_AUTO_CREATE);</span><br><span class="line">		break;</span><br><span class="line">	case R.id.btnUnbindService:</span><br><span class="line">		unbindService(MainActivity.this);</span><br><span class="line">		break;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="6、与Service通信"><a href="#6、与Service通信" class="headerlink" title="6、与Service通信"></a>6、与Service通信</h2><p>###（1）进程内部使用Binder通信<br>创建一个专门的Binder对象来构造Service与Activity的通信通道，在onServiceConnected()回调中接受由目标Service的unbind()方法返回的Binder对象，可以直接对Binder对象的方法进行操作，可以传入参数，返回数据等等；如果需要实现Service实时返回下载进度的功能，可以在Service中构建回调，具体的可以参考如下例子，相信大家都看得懂。</p>
+<ul>
+<li>MyService.java</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 控制任务是否执行</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> serviceRunning = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String data = <span class="string">"this is default message"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCallback</span><span class="params">(Callback callback)</span> </span>&#123;</span><br><span class="line">        mCallback = callback;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyBinder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBinder</span> <span class="keyword">extends</span> <span class="title">Binder</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setData</span><span class="params">(String newData)</span> </span>&#123;</span><br><span class="line">            MyService.<span class="keyword">this</span>.data = newData;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> MyService <span class="title">getMyService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> MyService.<span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">onStartCommand</span><span class="params">(Intent intent, <span class="keyword">int</span> flags, <span class="keyword">int</span> startId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onStartCommand(intent, flags, startId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate();</span><br><span class="line"></span><br><span class="line">        serviceRunning = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span> (serviceRunning) &#123;</span><br><span class="line">                    i++;</span><br><span class="line">                    String str = i + <span class="string">":"</span> + data;</span><br><span class="line">                    <span class="keyword">if</span> (mCallback != <span class="keyword">null</span>)</span><br><span class="line">                        mCallback.onDataChange(str);</span><br><span class="line">                    Log.i(<span class="string">"miomin"</span>, str);</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        sleep(<span class="number">1000</span>);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy();</span><br><span class="line">        serviceRunning = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Callback mCallback;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callback</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onDataChange</span><span class="params">(String date)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>MainActivity.java</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> <span class="keyword">implements</span> <span class="title">ServiceConnection</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    EditText etData;</span><br><span class="line">    <span class="keyword">private</span> MyService.MyBinder myBinder;</span><br><span class="line">    <span class="keyword">private</span> TextView tvOut;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">	     findViewById(R.id.startService).setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                startService(<span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, MyService.class));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        findViewById(R.id.stopService).setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                stopService(<span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, MyService.class));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        findViewById(R.id.bindService).setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                bindService(<span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, MyService.class), MainActivity.<span class="keyword">this</span>, Context.BIND_AUTO_CREATE);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        findViewById(R.id.unbindService).setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                unbindService(MainActivity.<span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        etData = (EditText) findViewById(R.id.etData);</span><br><span class="line"></span><br><span class="line">        findViewById(R.id.btnSyncData).setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (myBinder != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    myBinder.setData(etData.getText().toString());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        tvOut = (TextView) findViewById(R.id.tvOut);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</span><br><span class="line">        Log.i(<span class="string">"miomin"</span>, <span class="string">"服务连接成功"</span>);</span><br><span class="line">        myBinder = (MyService.MyBinder) service;</span><br><span class="line">        myBinder.getMyService().setCallback(<span class="keyword">new</span> MyService.Callback() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDataChange</span><span class="params">(String date)</span> </span>&#123;</span><br><span class="line">                Message message = Message.obtain();</span><br><span class="line">                Bundle bundle = <span class="keyword">new</span> Bundle();</span><br><span class="line">                bundle.putString(<span class="string">"data"</span>, date);</span><br><span class="line">                message.setData(bundle);</span><br><span class="line">                handler.sendMessage(message);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Handler handler = <span class="keyword">new</span> Handler() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>.handleMessage(msg);</span><br><span class="line">            tvOut.setText(msg.getData().getString(<span class="string">"data"</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</span><br><span class="line">        Log.i(<span class="string">"miomin"</span>, <span class="string">"服务连接关闭"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy();</span><br><span class="line">        unbindService(MainActivity.<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###（2）使用AIDL跨进程与Service通信</p>
+<ul>
+<li>引言：在Android平台，一个进程通常不能访问另一个进程的内存空间，所以要想跨进行通信的话，需要将对象分解成操作系统可以理解的基本单元，并且有序的通过进程边界。而为了方便编码，Android系统提供了AIDL工具来处理这项工作。</li>
+<li>AIDL (Android Interface Definition Language) 是一种IDL 语言，用于生成可以在Android设备上两个进程之间进行进程间通信(interprocess communication, IPC)的代码。</li>
+<li><p>AIDL接口文件，和普通的接口内容没有什么特别，只是它的扩展名为.aidl。如果想要使用AIDL进行跨进程通信，需要在两个工程的src文件夹下建立一模一样的AIDL文件，并且保证包名相同。</p>
+<h4 id="1、创建AIDL文件"><a href="#1、创建AIDL文件" class="headerlink" title="1、创建AIDL文件"></a>1、创建AIDL文件</h4></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">interface IAppServiceAidlInterface &#123;</span><br><span class="line">    /**</span><br><span class="line">     * Demonstrates some basic types that you can use as parameters</span><br><span class="line">     * and return values in AIDL.</span><br><span class="line">     */</span><br><span class="line">    void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat,</span><br><span class="line">            double aDouble, String aString);</span><br><span class="line"></span><br><span class="line">    void setData(String data);</span><br><span class="line"></span><br><span class="line">	List&lt;Car&gt; getAllCar(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2、在Service中实现AIDL中定义的接口"><a href="#2、在Service中实现AIDL中定义的接口" class="headerlink" title="2、在Service中实现AIDL中定义的接口"></a>2、在Service中实现AIDL中定义的接口</h4><ul>
+<li>注意：在实现接口前，需要先ReBuild。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public IBinder onBind(Intent intent) &#123;</span><br><span class="line">	return new IAppServiceAidlInterface.Stub() &#123;</span><br><span class="line">		@Override</span><br><span class="line">		public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public void setData(String data) throws RemoteException &#123;</span><br><span class="line">			AppService.this.data = data;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		@Override</span><br><span class="line">		public List&lt;Car&gt; getAllCar() throws RemoteException &#123;</span><br><span class="line">			return null;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3、在需要跨进程操作Service的Activity中接受Binder对象"><a href="#3、在需要跨进程操作Service的Activity中接受Binder对象" class="headerlink" title="3、在需要跨进程操作Service的Activity中接受Binder对象"></a>3、在需要跨进程操作Service的Activity中接受Binder对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onServiceConnected(ComponentName name, IBinder service) &#123;</span><br><span class="line">	IAppServiceAidlInterface AIDLBinder = IAppServiceAidlInterface.Stub.asInterface(service);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/01/22/【Thinking in Java读书笔记】如何安全的终止线程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          【Thinking in Java读书笔记】如何安全的终止线程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/12/16/【数据结构】数据结构总结之线性表、栈和队列/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【数据结构】数据结构总结之线性表、栈和队列</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="【Android学习笔记】再探Android Service" data-title="【Android学习笔记】再探Android Service" data-url="http://yoursite.com/2016/01/06/【Android学习笔记】再探Android Service/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"miomin"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 莫绪旻
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script>
+	var yiliaConfig = {
+		fancybox: false,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  </div>
+</body>
+</html>
